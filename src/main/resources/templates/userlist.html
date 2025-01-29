@@ -32,32 +32,40 @@
                         <table class="table table-hover ">
                             <thead class="thead-inverse">
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Gender</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Username</th>
                                 <th>Email</th>
-                                <th>Language</th>
+                                <th>Street</th>
+                                <th>Suite</th>
+                                <th>City</th>
+                                <th>Zipcode</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
                                 <th>Phone</th>
-                                <th>Location</th>
-                                <th>Login</th>
-                                <th>Job</th>
-                                <th>Billing</th>
-                                <th>Currency</th>
+                                <th>Website</th>
+                                <th>Company Name</th>
+                                <th>Catch Phrase</th>
+                                <th>Business</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="user : ${users}">
-                                <td th:text="${user.name}">Joe</td>
-<!--                                <td th:text="${user.getName().getLast()}">Buck</td>-->
-<!--                                <td th:text="${user.gender}">Male</td>-->
-<!--                                <td th:text="${user.email}">foo@example.com</td>-->
-<!--                                <td th:text="${user.language}">English</td>-->
-<!--                                <td th:text="${user.phone}">132-123-1234</td>-->
-<!--                                <td th:text="${user.location}">Location</td>-->
-<!--                                <td th:text="${user.login}">Login</td>-->
-<!--                                <td th:text="${user.job}">Job</td>-->
-<!--                                <td th:text="${user.billing}">Billing</td>-->
-<!--                                <td th:text="${user.currency}">Currency</td>-->
+                                <td th:text="${user.id}">1</td>
+                                <td th:text="${user.name}">Leanne Graham</td>
+                                <td th:text="${user.username}">Bret</td>
+                                <td th:text="${user.email}">Sincere@april.biz</td>
+                                <td th:text="${user.address.street}">Kulas Light</td>
+                                <td th:text="${user.address.suite}">Apt. 556</td>
+                                <td th:text="${user.address.city}">Gwenborough</td>
+                                <td th:text="${user.address.zipcode}">92998-3874</td>
+                                <td th:text="${user.address.geo.lat}">-37.3159</td>
+                                <td th:text="${user.address.geo.lng}">81.1496</td>
+                                <td th:text="${user.phone}">1-770-736-8031 x56442</td>
+                                <td th:text="${user.website}">hildegard.org</td>
+                                <td th:text="${user.company.name}">Romaguera-Crona</td>
+                                <td th:text="${user.company.catchPhrase}">Multi-layered client-server neural-net</td>
+                                <td th:text="${user.company.bs}">harness real-time e-markets</td>
                             </tr>
                         </table>
                     </div>

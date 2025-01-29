@@ -8,8 +8,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.List;
+import reactor.core.publisher.Flux;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -26,8 +25,8 @@ public class ApiServiceImplTest {
     public void getUsers() {
         int limit = 3;
 
-        List<User> users = apiService.getUsers(limit);
+        Flux<User> users = apiService.getUsers(limit);
 
-        Assertions.assertEquals(limit, users.size());
+        Assertions.assertEquals(limit, users.collectList().block().size());
     }
 }

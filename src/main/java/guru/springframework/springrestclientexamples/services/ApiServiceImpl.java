@@ -4,28 +4,25 @@ import guru.springframework.api.domain.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 
 @Service
 public class ApiServiceImpl implements ApiService {
 
-    private final RestTemplate restTemplate;
     private final String apiUrl;
 
     public ApiServiceImpl(RestTemplate restTemplate, @Value("${api.url}") String apiUrl) {
-        this.restTemplate = restTemplate;
         this.apiUrl = apiUrl;
     }
 
     @Override
-    public List<User> getUsers(Integer limit) {
-
-        UriComponentsBuilder builder = UriComponentsBuilder
-                .fromUriString(apiUrl).queryParam("_limit", limit);
-
-        return restTemplate.getForObject(builder.toUriString(),
-                List.class);
+    public Flux<User> getUsers(Integer limit) {
+        return WebClient
+                .create(apiUrl)
+                .get()
+                .uri(uriBuilder -> uriBuilder.queryParam("_limit", limit).build())
+                .retrieve()
+                .bodyToFlux(User.class);
     }
 }
